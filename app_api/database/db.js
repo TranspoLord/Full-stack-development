@@ -1,7 +1,7 @@
  const mongoose = require('mongoose');
  const host = process.env.DB_HOST || '127.0.0.1'
- const dbURI = 'monogodb://${host}/travlr';
- const readLine = require('readLine');
+ const dbURI = 'monogodb://localhost:27017/travlr';
+ const readLine = require('readline');
  
  mongoose.set('useUnifiedTopology', true);
 
@@ -59,4 +59,4 @@ process.on('SIGTERM', () => {
   
 connect();
 
-require('./travlr');
+require('./models/travelr');
