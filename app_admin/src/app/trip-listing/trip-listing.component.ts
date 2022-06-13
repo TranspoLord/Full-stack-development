@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+// import { trips } from '../data/trips';
 import { TripDataService } from '../services/trip-data.service';
 import { Trip } from '../models/trip';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-trip-listing',
@@ -11,8 +12,10 @@ import { Router } from '@angular/router';
 })
 export class TripListingComponent implements OnInit {
 
-  trips: Trip[] = [];
-  message: string | undefined;
+  //trips: Array<any> = trips;
+  trips: Trip[];
+
+  message: string;
 
   constructor(
     private tripDataService: TripDataService,
@@ -30,13 +33,13 @@ export class TripListingComponent implements OnInit {
     this.tripDataService
       .getTrips()
         .then(foundTrips => {
-        this.message = foundTrips.length > 0 ? '' : 'No trips found';
-        this.trips = foundTrips;
-      });
-   }
-   
+          this.message = foundTrips.length > 0 ? '' : 'No trips found';
+          this.trips = foundTrips;
+        });
+  }
 
   ngOnInit(): void {
-  }
+    this.getTrips();
+  } 
 
 }
